@@ -1,0 +1,9 @@
+name: ScrapeAC
+version: '${project.version}'
+main: me.cornholio.scrapeac.ScrapeAC
+api-version: 1.19
+
+commands:
+  salerts:
+    permission: scrapeac.notify
+    permission-message: You do not have permission to run this command.
