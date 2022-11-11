@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Locale;
 
-public class Check extends PacketListenerAbstract {
+public class Check {
 
     public final String name, description, type;
     public final Category category;

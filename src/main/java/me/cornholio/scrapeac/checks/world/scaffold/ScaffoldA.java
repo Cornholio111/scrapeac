@@ -9,7 +9,7 @@ import me.cornholio.scrapeac.checks.Check;
 import me.cornholio.scrapeac.checks.CheckData;
 import org.bukkit.entity.Player;
 
-@CheckData(name="Scaffold", type="A", category=Category.WORLD, description="placeBlock.scaffold")
+@CheckData(name="Scaffold", type="A", category=Category.WORLD, description="placeblock.scaffold")
 public class ScaffoldA extends Check {
 
     public ScaffoldA(Player player) {
@@ -29,6 +29,7 @@ public class ScaffoldA extends Check {
                     || cursorPos.getY() < 0 || cursorPos.getY() > 1
                     || cursorPos.getZ() < 0 || cursorPos.getZ() > 1) {
                 flag();
+                event.setCancelled(true);
             }
 
         }

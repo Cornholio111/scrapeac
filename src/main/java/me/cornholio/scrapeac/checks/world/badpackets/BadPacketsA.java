@@ -5,9 +5,10 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import me.cornholio.scrapeac.checks.Category;
 import me.cornholio.scrapeac.checks.Check;
 import me.cornholio.scrapeac.checks.CheckData;
+import me.cornholio.scrapeac.util.PacketUtil;
 import org.bukkit.entity.Player;
 
-@CheckData(name="BadPackets", type="A", category= Category.WORLD, description="badPackets.timer")
+@CheckData(name="BadPackets", type="A", category= Category.WORLD, description="badpackets.timer")
 public class BadPacketsA extends Check {
 
     public BadPacketsA(Player player) {
@@ -19,7 +20,7 @@ public class BadPacketsA extends Check {
 
     @Override
     public void onPacketEvent(PacketReceiveEvent event) {
-        if(event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION || event.getPacketType() == PacketType.Play.Client.PLAYER_FLYING) {
+        if(PacketUtil.isFlying(event)) {
             ++this.packets;
             final long dif = System.nanoTime() - this.timer;
             if (dif >= 250000000) {
@@ -32,6 +33,7 @@ public class BadPacketsA extends Check {
                     }
 
                     flag();
+                    event.setCancelled(true);
                 }
 
                 buffer = Math.max(0, buffer - 6);

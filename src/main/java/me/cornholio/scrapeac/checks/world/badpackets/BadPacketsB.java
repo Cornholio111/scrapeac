@@ -8,7 +8,7 @@ import me.cornholio.scrapeac.checks.Check;
 import me.cornholio.scrapeac.checks.CheckData;
 import org.bukkit.entity.Player;
 
-@CheckData(name="BadPackets", type="B", category= Category.WORLD, description="badPackets.invalid")
+@CheckData(name="BadPackets", type="B", category= Category.WORLD, description="badpackets.invalid")
 public class BadPacketsB extends Check {
 
     public BadPacketsB(Player player) {
@@ -19,13 +19,15 @@ public class BadPacketsB extends Check {
 
     @Override
     public void onPacketEvent(PacketReceiveEvent event) {
-        if(event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) {
+        if(event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION
+                || event.getPacketType() == PacketType.Play.Client.PLAYER_ROTATION) {
 
             final WrapperPlayClientPlayerPositionAndRotation wrapped = new WrapperPlayClientPlayerPositionAndRotation(event);
 
             // Impossible, likely C06 disabler
             if(lastYaw == wrapped.getYaw() && lastPitch == wrapped.getPitch()) {
                 flag();
+                event.setCancelled(true);
             }
 
             lastYaw = wrapped.getYaw();

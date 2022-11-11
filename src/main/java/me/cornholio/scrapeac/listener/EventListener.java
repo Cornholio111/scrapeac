@@ -2,7 +2,10 @@ package me.cornholio.scrapeac.listener;
 
 import com.github.retrooper.packetevents.event.PacketListenerAbstract;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
+import com.github.retrooper.packetevents.event.PacketSendEvent;
+import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import me.cornholio.scrapeac.ScrapeAC;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class EventListener extends PacketListenerAbstract {
@@ -14,6 +17,16 @@ public class EventListener extends PacketListenerAbstract {
                 c.onPacketEvent(event);
             }
         });
+    }
+
+    @Override
+    public void onPacketSend(PacketSendEvent event) {
+        Player player = (Player) event.getPlayer();
+        if (event.getPacketType() == PacketType.Play.Server.DISCONNECT) {
+            if (player != null) {
+                ScrapeAC.getInstance().getDataManager().removeChecks(player);
+            }
+        }
     }
 
 }
