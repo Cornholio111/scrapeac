@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 @CheckData(name="BadPackets", type="A", category= Category.WORLD, description="badpackets.timer")
 public class BadPacketsA extends Check {
 
-    public BadPacketsA(Player player) {
+    public BadPacketsA(final Player player) {
         super(player);
     }
 
@@ -19,7 +19,7 @@ public class BadPacketsA extends Check {
     private long timer;
 
     @Override
-    public void onPacketEvent(PacketReceiveEvent event) {
+    public void onPacketEvent(final PacketReceiveEvent event) {
         if(PacketUtil.isFlying(event)) {
             ++this.packets;
             final long dif = System.nanoTime() - this.timer;

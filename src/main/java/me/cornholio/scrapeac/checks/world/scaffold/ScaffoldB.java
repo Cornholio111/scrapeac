@@ -10,10 +10,10 @@ import me.cornholio.scrapeac.checks.Check;
 import me.cornholio.scrapeac.checks.CheckData;
 import org.bukkit.entity.Player;
 
-@CheckData(name="Scaffold", type="B", category= Category.WORLD, description="placeBlock.scaffold")
+@CheckData(name="Scaffold", type="B", category= Category.WORLD, description="placeblock.scaffold")
 public class ScaffoldB extends Check {
 
-    public ScaffoldB(Player player) {
+    public ScaffoldB(final Player player) {
         super(player);
     }
 
@@ -22,7 +22,7 @@ public class ScaffoldB extends Check {
     private long lastPlace;
 
     @Override
-    public void onPacketEvent(PacketReceiveEvent event) {
+    public void onPacketEvent(final PacketReceiveEvent event) {
 
         if(event.getPacketType() == PacketType.Play.Client.PLAYER_BLOCK_PLACEMENT) {
 

@@ -1,6 +1,5 @@
 package me.cornholio.scrapeac.checks;
 
-import com.github.retrooper.packetevents.event.PacketListenerAbstract;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import me.cornholio.scrapeac.ScrapeAC;
 import org.bukkit.Bukkit;
@@ -16,7 +15,7 @@ public class Check {
     protected final Player player;
     private final DataManager data = ScrapeAC.getInstance().getDataManager();
 
-    public Check(Player player) {
+    public Check(final Player player) {
         if (getClass().isAnnotationPresent(CheckData.class)) {
             final CheckData data = getClass().getAnnotation(CheckData.class);
             this.name = data.name();
@@ -42,6 +41,6 @@ public class Check {
         });
     }
 
-    public void onPacketEvent(PacketReceiveEvent event) { }
+    public void onPacketEvent(final PacketReceiveEvent event) { }
 
 }

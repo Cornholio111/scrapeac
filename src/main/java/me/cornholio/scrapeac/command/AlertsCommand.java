@@ -1,6 +1,5 @@
 package me.cornholio.scrapeac.command;
 
-import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import me.cornholio.scrapeac.ScrapeAC;
 import me.cornholio.scrapeac.checks.DataManager;
 import org.bukkit.ChatColor;
@@ -15,7 +14,7 @@ public class AlertsCommand implements CommandExecutor {
     private final DataManager data = ScrapeAC.getInstance().getDataManager();
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String label, @NotNull final String[] args) {
         if(sender instanceof Player) {
             data.setAlerts((Player) sender, !data.getAlerts((Player) sender));
             final String message = ChatColor.translateAlternateColorCodes('&',

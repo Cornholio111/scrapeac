@@ -12,12 +12,12 @@ import org.bukkit.entity.Player;
 @CheckData(name="Scaffold", type="A", category=Category.WORLD, description="placeblock.scaffold")
 public class ScaffoldA extends Check {
 
-    public ScaffoldA(Player player) {
+    public ScaffoldA(final Player player) {
         super(player);
     }
 
     @Override
-    public void onPacketEvent(PacketReceiveEvent event) {
+    public void onPacketEvent(final PacketReceiveEvent event) {
 
         if(event.getPacketType() == PacketType.Play.Client.PLAYER_BLOCK_PLACEMENT) {
 

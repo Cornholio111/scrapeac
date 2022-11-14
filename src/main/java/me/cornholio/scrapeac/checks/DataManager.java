@@ -1,5 +1,6 @@
 package me.cornholio.scrapeac.checks;
 
+import me.cornholio.scrapeac.checks.combat.aim.AimA;
 import me.cornholio.scrapeac.checks.world.badpackets.BadPacketsA;
 import me.cornholio.scrapeac.checks.world.badpackets.BadPacketsB;
 import me.cornholio.scrapeac.checks.world.scaffold.ScaffoldA;
@@ -19,14 +20,17 @@ public class DataManager {
     public void addChecks(final Player player) {
         List<Check> checks = new ArrayList<>();
 
+        checks.add(new AimA(player)); // invalid sensitivity
+
+
         checks.add(new BadPacketsA(player)); // timer
 
         checks.add(new BadPacketsB(player)); // only c06
 
 
-        checks.add(new ScaffoldA(player));
+        checks.add(new ScaffoldA(player)); // hitvec not on block
 
-        checks.add(new ScaffoldB(player));
+        checks.add(new ScaffoldB(player)); // repetitive hitvec
 
         checkMap.put(player, checks);
 

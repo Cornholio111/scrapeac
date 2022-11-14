@@ -11,14 +11,14 @@ import org.bukkit.entity.Player;
 @CheckData(name="BadPackets", type="B", category= Category.WORLD, description="badpackets.invalid")
 public class BadPacketsB extends Check {
 
-    public BadPacketsB(Player player) {
+    public BadPacketsB(final Player player) {
         super(player);
     }
 
     private float lastYaw, lastPitch;
 
     @Override
-    public void onPacketEvent(PacketReceiveEvent event) {
+    public void onPacketEvent(final PacketReceiveEvent event) {
         if(event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION
                 || event.getPacketType() == PacketType.Play.Client.PLAYER_ROTATION) {
 
